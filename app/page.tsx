@@ -5,10 +5,11 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ModeToggle } from "@/components/ui/modeToggle"
 import GradualSpacing from "@/components/ui/gradual-spacing"
+import GetPost from "./api";
 export default function Layout() {
   return (
     <div className="bg-background text-foreground">
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col">
       <header className="sticky top-0 z-50 w-full border-b bg-background">
         <div className="container flex h-14 items-center justify-end">
           <nav className="flex items-center space-x-4 lg:space-x-6 mr-10 text-foreground">
@@ -40,9 +41,9 @@ export default function Layout() {
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl text-foreground">
                   <GradualSpacing text="Oahed Speaking..." />
                 </h1>
-                <p className="mx-auto max-w-[700px] text-gray-700 md:text-xl">
+                <div className="mx-auto max-w-[700px] text-gray-700 md:text-xl">
                   <GradualSpacing text="Explore my thoughts, interests, and experiences through my blog posts and more." delayMultiple={.01} />
-                </p>
+                </div>
               </div>
             </div>
           </div>
@@ -52,22 +53,9 @@ export default function Layout() {
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl mb-8">
                 <GradualSpacing text="Latest Blogs" />
               </h2>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {[1, 2, 3].map((blog) => (
-                <Card key={blog} className="mx-auto">
-                  <CardHeader>
-                    <CardTitle>Blog Post {blog}</CardTitle>
-                    <CardDescription>Posted on {new Date().toLocaleDateString()}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p>This is a brief preview of blog post {blog}. Click to read more...</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+              <GetPost/>
           </div>
         </section>
-
         <section className="w-full py-12 md:py-24 lg:py-32 text-center">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl mb-8">Contact Me</h2>
@@ -80,7 +68,6 @@ export default function Layout() {
           </div>
         </section>
       </main>
-
       <footer className="w-full py-6 bg-gray-800 text-white text-center">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center">
